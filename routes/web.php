@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaymentController;
@@ -15,6 +16,8 @@ Route::middleware('legacy.account')->group(function () {
     Route::get('/akun', [AccountController::class, 'show'])->name('account');
     Route::get('/transaksi', [TransactionController::class, 'index'])->name('transactions.index');
     Route::post('/transaksi', [TransactionController::class, 'store'])->name('transactions.store');
+    Route::get('/keluhan', [ComplaintController::class, 'index'])->name('complaints.index');
+    Route::post('/keluhan', [ComplaintController::class, 'store'])->name('complaints.store');
     Route::get('/transaksi/{transaction}/pembayaran', [PaymentController::class, 'create'])->name('payments.create');
     Route::post('/transaksi/{transaction}/pembayaran', [PaymentController::class, 'store'])->name('payments.store');
     Route::get('/kelola/pembayaran', [PaymentController::class, 'index'])->name('payments.index');

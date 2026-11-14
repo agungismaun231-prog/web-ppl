@@ -38,6 +38,12 @@ class TravelFlowTest extends TestCase
             $table->increments('id_member');
             $table->string('nama');
         });
+        Schema::create('keluhan', function (Blueprint $table) {
+            $table->increments('id_keluhan');
+            $table->unsignedInteger('id_member');
+            $table->string('j_keluhan', 20);
+            $table->string('d_keluhan', 200);
+        });
         Schema::create('jadwal', function (Blueprint $table) {
             $table->increments('id_jadwal');
             $table->unsignedInteger('id_kota_asal');
@@ -157,6 +163,56 @@ class TravelFlowTest extends TestCase
             'harga' => 70000,
             'jam_berangkat' => '10:15:00',
         ]);
+    }
+
+    public function test_member_can_submit_a_complaint_that_admin_can_read(): void
+    {
+        $this->withSession(['legacy_account' => ['id' => 1, 'role' => 'member']])
+            ->post(route('complaints.store'), [
+                'judul' => 'Kendaraan terlambat',
+                'isi_keluhan' => 'Travel belum tiba pada waktu yang dijadwalkan.',
+            ])
+            ->assertRedirect(route('complaints.index'));
+
+        $this->assertDatabaseHas('keluhan', [
+            'id_member' => 1,
+            'j_keluhan' => 'Kendaraan terlambat',
+            'd_keluhan' => 'Travel belum tiba pada waktu yang dijadwalkan.',
+        ]);
+
+        $this->withSession(['legacy_account' => ['id' => 1, 'role' => 'admin']])
+            ->get(route('complaints.index'))
+            ->assertOk()
+            ->assertSee('Kendaraan terlambat')
+            ->assertSee('Travel belum tiba pada waktu yang dijadwalkan.')
+            ->assertSee('Member Uji');
+    }
+
+    public function test_member_only_sees_their_own_complaints_and_cannot_create_schedules(): void
+    {
+        DB::table('member')->insert(['id_member' => 2, 'nama' => 'Member Lain']);
+        DB::table('keluhan')->insert([
+            'id_member' => 2,
+            'j_keluhan' => 'Keluhan lain',
+            'd_keluhan' => 'Isi privat',
+        ]);
+
+        $this->withSession(['legacy_account' => ['id' => 1, 'role' => 'member']])
+            ->get(route('complaints.index'))
+            ->assertOk()
+            ->assertDontSee('Keluhan lain')
+            ->assertDontSee('Isi privat');
+
+        $this->withSession(['legacy_account' => ['id' => 1, 'role' => 'member']])
+            ->post(route('schedules.store'), [
+                'id_kota_asal' => 1,
+                'id_kota_tujuan' => 1,
+                'harga' => 1,
+                'tgl_berangkat' => today()->addDays(2)->toDateString(),
+                'jam_berangkat' => '08:00',
+                'id_mobil' => 1,
+            ])
+            ->assertForbidden();
     }
 
     public function test_home_page_displays_available_schedules(): void

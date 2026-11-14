@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Transaksi Saya - Rute Travel</title>
+    <title>Transaksi Saya - Jalanbae</title>
     <link rel="stylesheet" href="{{ asset('assets/css/auth.css') }}">
 </head>
 <body>
     <main class="auth-shell management-shell">
-        <a class="brand" href="{{ route('home') }}"><span class="brand-mark">R</span><span>rute<span class="brand-light">travel</span></span></a>
+        <a class="brand" href="{{ route('home') }}"><span class="brand-mark">J</span><span>jalan<span class="brand-light">bae</span></span></a>
         <section class="auth-panel">
             <p class="eyebrow">Riwayat perjalanan</p>
             <h1>Transaksi saya</h1>

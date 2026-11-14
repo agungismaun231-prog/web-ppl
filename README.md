@@ -1,4 +1,4 @@
-## Rute Travel
+## Jalanbae
 
 Panduan setup aplikasi ini ada di [SETUP.md](SETUP.md). Aplikasi menggunakan database lama `db_tiket`, menampilkan pencarian jadwal, mendukung transaksi dan konfirmasi pembayaran transfer, serta menyediakan pembuatan jadwal baru oleh admin.
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Masuk - Rute Travel</title>
+    <title>Masuk - Jalanbae</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
@@ -11,11 +11,11 @@
 </head>
 <body>
     <main class="auth-shell">
-        <a class="brand" href="{{ route('home') }}"><span class="brand-mark">R</span><span>rute<span class="brand-light">travel</span></span></a>
+        <a class="brand" href="{{ route('home') }}"><span class="brand-mark">J</span><span>jalan<span class="brand-light">bae</span></span></a>
         <section class="auth-panel">
             <p class="eyebrow">Portal perjalanan</p>
             <h1>Masuk ke akun</h1>
-            <p class="auth-description">Gunakan akun yang sudah terdaftar pada sistem Rute Travel.</p>
+            <p class="auth-description">Gunakan akun yang sudah terdaftar pada sistem Jalanbae.</p>
             <form method="post" action="{{ route('login.store') }}">
                 @csrf
                 <label for="role">Jenis akun</label>

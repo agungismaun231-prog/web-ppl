@@ -8,6 +8,6 @@
 
 Login memakai kolom `email` untuk admin, `username` untuk member, dan `user` untuk operator loket. Password plaintext akan diubah menjadi hash setelah login pertama yang berhasil.
 
-Member dapat memesan kursi dari jadwal, mengirim referensi transfer, dan melihat status transaksi pada menu **Transaksi**. Admin dan operator loket dapat memeriksa bukti transfer lalu mengonfirmasi pembayaran; admin juga dapat menambahkan jadwal baru. Pembayaran saat ini dikonfirmasi secara manual dan belum terhubung ke payment gateway.
+Member dapat memesan kursi dari jadwal, mengirim referensi transfer, melihat status transaksi pada menu **Transaksi**, dan mengirim keluhan lewat menu **Keluhan saya**. Admin dapat membaca keluhan member, memeriksa bukti pembayaran, serta membuat jadwal dan menentukan harga tiketnya. Operator loket dapat memeriksa bukti transfer lalu mengonfirmasi pembayaran. Pembayaran saat ini dikonfirmasi secara manual dan belum terhubung ke payment gateway.
 
 Jalankan tes dengan `php artisan test` dari folder `laravel-app`.

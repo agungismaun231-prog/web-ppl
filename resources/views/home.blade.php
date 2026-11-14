@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Cari jadwal travel dan pesan perjalanan Anda dengan mudah.">
-    <title>Rute Travel - Cari Perjalanan</title>
+    <title>Jalanbae - Cari Perjalanan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
@@ -12,17 +12,19 @@
 </head>
 <body>
     <header class="topbar">
-        <a class="brand" href="{{ route('home') }}" aria-label="Rute Travel, beranda">
-            <span class="brand-mark" aria-hidden="true">R</span>
-            <span>rute<span class="brand-light">travel</span></span>
+        <a class="brand" href="{{ route('home') }}" aria-label="Jalanbae, beranda">
+            <span class="brand-mark" aria-hidden="true">J</span>
+            <span>jalan<span class="brand-light">bae</span></span>
         </a>
         <nav class="navigation" aria-label="Navigasi utama">
             <a class="nav-active" href="{{ route('home') }}">Cari tiket</a>
             <a href="#jadwal">Jadwal</a>
             @if (session('legacy_account.role') === 'member')
                 <a href="{{ route('transactions.index') }}">Transaksi</a>
+                <a href="{{ route('complaints.index') }}">Keluhan saya</a>
             @elseif (session('legacy_account.role') === 'admin')
                 <a href="{{ route('schedules.create') }}">Tambah jadwal</a>
+                <a href="{{ route('complaints.index') }}">Keluhan member</a>
             @elseif (session('legacy_account.role') === 'operator_loket')
                 <a href="{{ route('payments.index') }}">Pembayaran</a>
             @endif
@@ -151,8 +153,8 @@
     </main>
 
     <footer class="footer">
-        <a class="brand footer-brand" href="{{ route('home') }}"><span class="brand-mark" aria-hidden="true">R</span><span>rute<span class="brand-light">travel</span></span></a>
-        <span>&copy; {{ date('Y') }} Rute Travel. Perjalanan dimulai dari sini.</span>
+        <a class="brand footer-brand" href="{{ route('home') }}"><span class="brand-mark" aria-hidden="true">J</span><span>jalan<span class="brand-light">bae</span></span></a>
+        <span>&copy; {{ date('Y') }} Jalanbae. Perjalanan dimulai dari sini.</span>
     </footer>
 </body>
 </html>
